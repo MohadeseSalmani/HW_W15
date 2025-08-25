@@ -3,7 +3,6 @@ package QU_1.Model;
 import jakarta.persistence.*;
 
 @MappedSuperclass
-@Entity
 public abstract class Vehicle {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

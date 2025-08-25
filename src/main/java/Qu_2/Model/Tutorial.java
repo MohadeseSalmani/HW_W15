@@ -10,8 +10,8 @@ public class Tutorial extends  Content {
     private  String  topic;
     private boolean isFree;
 
-    public Tutorial(int id, String title, String author, int duration, String topic, boolean isFree) {
-        super(id, title, author, duration);
+    public Tutorial( String title, String author, int duration, String topic, boolean isFree) {
+        super( title, author, duration);
         this.topic = topic;
         this.isFree = isFree;
     }

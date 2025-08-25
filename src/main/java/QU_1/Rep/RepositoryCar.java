@@ -1,10 +1,9 @@
 package QU_1.Rep;
 
-import QU_1.IMP.BaseRepository;
+import QU_1.Service.BaseRepository;
 import QU_1.Model.Car;
 import QU_1.Util.EntityManagerProvider;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityManagerFactory;
 
 import java.util.List;
 

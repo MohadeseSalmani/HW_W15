@@ -16,8 +16,7 @@ public abstract class Content {
     @Enumerated(EnumType.STRING)
     private ContentStatus contentStatus;
 
-    public Content(int id, String title, String author, int duration) {
-        this.id = id;
+    public Content( String title, String author, int duration) {
         this.title = title;
         this.author = author;
         this.duration = duration;
@@ -27,13 +26,6 @@ public abstract class Content {
 
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getTitle() {
         return title;

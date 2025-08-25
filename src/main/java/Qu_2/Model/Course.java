@@ -6,11 +6,11 @@ import jakarta.persistence.Entity;
 public class Course extends  Content{
 
 
-    private int level;
+    private String level;
     private  int price;
 
-    public Course(int id, String title, String author, int duration, int level, int price) {
-        super(id, title, author, duration);
+    public Course( String title, String author, int duration, String level, int price) {
+        super( title, author, duration);
         this.level = level;
         this.price = price;
     }
@@ -19,11 +19,11 @@ public class Course extends  Content{
         super();
     }
 
-    public int getLevel() {
+    public String getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(String level) {
         this.level = level;
     }
 

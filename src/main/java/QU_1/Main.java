@@ -4,6 +4,7 @@ import QU_1.Model.Car;
 import QU_1.Model.Truck;
 import QU_1.Model.Vehicle;
 import QU_1.Rep.RepositoryCar;
+import QU_1.Rep.RepositoryVehicle;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -18,6 +19,8 @@ public class Main {
         EntityManager em = emf.createEntityManager();
 
         RepositoryCar repositoryCar =new RepositoryCar();
+        RepositoryVehicle repositoryVehicle  =new RepositoryVehicle();
+
 
         em.getTransaction().begin();
         Car c1 = new Car();
@@ -84,30 +87,33 @@ public class Main {
         emf.close();
 
 
-List<Car> cars =repositoryCar.findAll();
+        List<Vehicle> vehicles = repositoryVehicle.findAll();
 
-        List<Car> big = cars.stream()
-                .filter(c -> c.getSeatingCapacity() > 4)
+        List<Car> capacCars = vehicles.stream()
+                .filter(v -> v instanceof Car && ((Car) v).getSeatingCapacity() > 4)
+                .map(v -> (Car) v)
                 .collect(Collectors.toList());
-        big.forEach(c -> System.out.println(" Brand "+ car.getBrand()+" Model " +car.getModel() +" Year " + car.getYear()));
+        capacCars.forEach(c -> System.out.println(" Brand "+ car.getBrand()+" Model " +car.getModel() +" Year " + car.getYear()));
 
 
-        List<Truck> heavyCars = Arrays.asList(t1,t2).stream()
-                .filter(t->t.getLoadCapacity()>10)
+        List<Truck> heavyTrucks = vehicles.stream()
+                .filter(v -> v instanceof Truck && ((Truck) v).getLoadCapacity() > 10)
+                .map(v -> (Truck) v)
                 .collect(Collectors.toList());
-        heavyCars.forEach(truck -> System.out.println(" Brand "+ truck.getBrand()+" Model " +truck.getModel() +" Year " + truck.getYear()));
+        heavyTrucks.forEach(truck -> System.out.println(" Brand "+ truck.getBrand()+" Model " +truck.getModel() +" Year " + truck.getYear()));
 
 
-        double averageYear = Arrays.asList(c1, c2, c3, c4,t1,t2).stream()
+
+        double avgYear = vehicles.stream()
                 .mapToInt(Vehicle::getYear)
-                .average()
-                .orElse(0);
-                int roundedAverage = (int) Math.round(averageYear);
-                System.out.println("Average Manufacturing Year: " + averageYear);
+                .average().orElse(0);
+        System.out.println("Average Manufacturing Year: " +  (int) Math.round(avgYear));
 
-        Map<String, Long> brandCounts = Arrays.asList(c1, c2, c3, c4,t1,t2).stream()
+        Map<String, Long> brandCount = vehicles.stream()
                 .collect(Collectors.groupingBy(Vehicle::getBrand, Collectors.counting()));
-        brandCounts.forEach((brand, count) ->  System.out.println(brand + " → " + count + " vehicles"));
+        brandCount.forEach((brand, count) ->  System.out.println(brand + " → " + count + " vehicles"));
+
+
 
     }
 }

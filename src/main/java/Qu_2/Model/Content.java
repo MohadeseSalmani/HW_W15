@@ -1,9 +1,8 @@
 package Qu_2.Model;
 
 import jakarta.persistence.*;
-
-@MappedSuperclass
 @Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class Content {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

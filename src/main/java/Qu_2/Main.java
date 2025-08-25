@@ -1,5 +1,6 @@
 package Qu_2;
 
+import QU_1.Model.Vehicle;
 import QU_1.Rep.RepositoryCar;
 import Qu_2.Model.Content;
 import Qu_2.Model.Course;
@@ -43,6 +44,8 @@ public class Main {
 
         Map<String, Long> authorCount = content.stream()
                 .collect(Collectors.groupingBy(Content::getAuthor, Collectors.counting()));
+        authorCount.forEach((author, count) ->  System.out.println(author + count ));
+
 
 
     }

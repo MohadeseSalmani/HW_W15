@@ -3,7 +3,7 @@ package Qu_2.Model;
 import jakarta.persistence.Entity;
 
 @Entity
-public class Course extends  Content{
+public class Course extends Content{
 
 
     private String level;
